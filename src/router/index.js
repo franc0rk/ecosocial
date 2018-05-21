@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import OAuth from 'src/services/oauth'
 
 import routes from './routes'
 
@@ -19,6 +20,18 @@ const Router = new VueRouter({
   base: process.env.VUE_ROUTER_BASE,
   scrollBehavior: () => ({ y: 0 }),
   routes
+})
+
+Router.beforeEach((to, from, next) => {
+  if (to.meta.requires_auth && !OAuth.getAuthToken()) {
+    next('login')
+  }
+
+  if (to.name === 'login' && OAuth.getAuthToken()) {
+    OAuth.logout()
+  }
+
+  next()
 })
 
 export default Router

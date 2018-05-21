@@ -4,7 +4,11 @@ export default [
     path: '/',
     component: () => import('layouts/default'),
     children: [
-      { path: '', component: () => import('pages/index') }
+      {
+        path: '',
+        requires_auth: true,
+        component: () => import('pages/index')
+      }
     ]
   },
 
