@@ -1,6 +1,8 @@
 <template>
   <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="~assets/quasar-logo-full.svg">
+    <h5>Hola {{username}}!</h5>
+    <post-form></post-form>
+    <posts-list></posts-list>
   </q-page>
 </template>
 
@@ -8,7 +10,21 @@
 </style>
 
 <script>
+import PostForm from 'components/posts/form/form'
+import PostsList from 'components/posts/list/list'
+
 export default {
-  name: 'PageIndex'
+  name: 'PageIndex',
+  components: {
+    PostForm,
+    PostsList
+  },
+  computed: {
+    username () {
+      return this.$store.state.users.current
+        ? this.$store.state.users.current.name
+        : ''
+    }
+  }
 }
 </script>
