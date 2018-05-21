@@ -5,16 +5,18 @@ module.exports = function (ctx) {
     // app plugins (/src/plugins)
     plugins: [
       'i18n',
-      'axios'
+      'axios',
+      'vuelidate',
+      'socialsharing'
     ],
     css: [
       'app.styl'
     ],
     extras: [
       ctx.theme.mat ? 'roboto-font' : null,
-      'material-icons'
+      'material-icons',
       // 'ionicons',
-      // 'mdi',
+      'mdi'
       // 'fontawesome'
     ],
     supportIE: true,
@@ -45,6 +47,7 @@ module.exports = function (ctx) {
     },
     // framework: 'all' --- includes everything; for dev only!
     framework: {
+      iconSet: 'material-icons',
       components: [
         'QLayout',
         'QLayoutHeader',
@@ -59,10 +62,23 @@ module.exports = function (ctx) {
         'QListHeader',
         'QItem',
         'QItemMain',
-        'QItemSide'
+        'QItemSide',
+        'QCard',
+        'QCardMain',
+        'QCardTitle',
+        'QCardMedia',
+        'QCardSeparator',
+        'QCardActions',
+        'QField',
+        'QInput',
+        'QDatetime',
+        'QItemTile',
+        'QUploader',
+        'QModal'
       ],
       directives: [
-        'Ripple'
+        'Ripple',
+        'CloseOverlay'
       ],
       // Quasar plugins
       plugins: [
